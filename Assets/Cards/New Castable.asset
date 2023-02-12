@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CardType: 0
   CardName: BOOM
-  cost: 5
+  cost: 2
   actions:
   - action: 0
-    actionValue: 2
-    target: 5
+    actionValue: 4
+    target: 8
     targetCount: 0

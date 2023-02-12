@@ -19,7 +19,7 @@ MonoBehaviour:
   team: 0
   canAttack: 0
   CardKeywords: 01000000
-  CardType: 00000000
+  CardType: 01000000
   EndOfTurnEffects: []
   StartOfTurnEffects: []
   Battlecry:
