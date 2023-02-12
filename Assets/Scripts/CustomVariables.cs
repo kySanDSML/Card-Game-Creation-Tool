@@ -49,16 +49,18 @@ public enum SummonType
 public enum keywords
 {//stealing a bunch of random keywords for display only.
     Taunt,
-    Rush,
-    Windfury,
+    Readied,
+    Doublestrike,
     Lifesteal,
-    Overcharge,
+    Empower,
     None = -1
 }
 
 public enum CastType
 {
-    Spell
+    Spell,
+    Trap,
+    Quest
 }
 
 [System.Serializable]
