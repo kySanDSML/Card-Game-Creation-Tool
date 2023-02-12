@@ -10,4 +10,7 @@ public class ScriptableSummon : ScriptableCard
 
     public int health;
     public int damage;
+
+    public Team team;
+    public bool canAttack;
 }

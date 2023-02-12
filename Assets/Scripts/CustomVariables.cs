@@ -12,12 +12,21 @@ public enum Target
 {
     Any,
     All,
+    AnyPlayer,
     Player,
     EnemyPlayer,
     AllMinion,
     AnyMinion,
     PlayerMinion,
-    EnemyMinion
+    EnemyMinion,
+    AllPlayerMinions,
+    AllEnemyMinions
+}
+
+public enum Team
+{
+    Player_0,
+    Player_1
 }
 
 [System.Serializable]
