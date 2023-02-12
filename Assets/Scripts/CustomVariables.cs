@@ -6,16 +6,17 @@ public enum Action
 {
     Damage,
     Heal,
+    None = -1
 }
 
 public enum Target
 {
     Any,
-    All,
+    Everything,
     AnyPlayer,
     Player,
     EnemyPlayer,
-    AllMinion,
+    AllMinions,
     AnyMinion,
     PlayerMinion,
     EnemyMinion,
@@ -58,5 +59,12 @@ public enum keywords
 public enum CastType
 {
     Spell
+}
+
+[System.Serializable]
+public class CastTargetPair
+{
+    public ScriptableCast Cast;
+    public Target target;
 }
 

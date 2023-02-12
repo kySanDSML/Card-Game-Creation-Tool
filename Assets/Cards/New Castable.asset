@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5700d8ed93915174494a533e86a266ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 58c9aba1d69f4d8409a10f49f1d8d3e2, type: 3}
   m_Name: New Castable
   m_EditorClassIdentifier: 
   CardType: 0
+  CardName: BOOM
+  cost: 5
   actions:
   - action: 0
-    actionValue: 0
-    target: 0
+    actionValue: 2
+    target: 5
     targetCount: 0

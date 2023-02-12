@@ -6,6 +6,8 @@ using UnityEngine;
 public class ScriptableCast : ScriptableCard
 {   
     public CastType CardType;
+    public string CardName;
+    public int cost;
     public List<ActionTargetPair> actions = new List<ActionTargetPair>();
 
     
