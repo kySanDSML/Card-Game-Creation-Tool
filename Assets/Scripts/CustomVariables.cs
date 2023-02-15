@@ -11,7 +11,7 @@ public enum Action
 
 public enum Target
 {
-    Any,
+    AnyTarget,
     Everything,
     AnyPlayer,
     Player,
@@ -69,4 +69,50 @@ public class CastTargetPair
     public ScriptableCast Cast;
     public Target target;
 }
+
+[System.Serializable]
+public class KeywordStringPair
+{
+    public keywords KeyWord;
+    public string KeyWordAlias;
+
+    public KeywordStringPair(keywords keyword, string alias)
+    {
+        this.KeyWord = keyword;
+        this.KeyWordAlias = alias;
+    }
+}
+
+[System.Serializable]
+public class WordStringPair //this is basically like KeywordStringPair but for non enumerable keywords that can be added to the database whenever.
+{
+    public string word;
+    public string alias;
+
+    public WordStringPair(string word, string alias)
+    {
+        this.word = word;
+        this.alias = alias;
+    }
+}
+
+[System.Serializable]
+public class NamedAction
+{
+    public string actionName;
+    public ActionTargetPair pair;
+
+    public NamedAction(string actionName, ActionTargetPair pair)
+    {
+        this.actionName = actionName;
+        this.pair = pair;
+    }
+
+    public NamedAction(string actionName)
+    {
+        this.actionName = actionName;
+        this.pair = new ActionTargetPair();
+    }
+}
+
 

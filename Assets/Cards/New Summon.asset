@@ -35,7 +35,7 @@ MonoBehaviour:
     actionValue: 0
     target: 0
     targetCount: 0
-  Deathrattle:
+  FinalWord:
     action: 0
     actionValue: 0
     target: 0

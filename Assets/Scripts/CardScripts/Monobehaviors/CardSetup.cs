@@ -55,18 +55,18 @@ public class CardSetup : MonoBehaviour
             CardText = "";
             foreach (keywords word in summon.CardKeywords)
             {
-                CardText += "<align=\"center\"><b>" + word.ToString() + "</b></align>\n";
+                CardText += "<align=\"center\"><b>" + (KeywordAliases.getAliases()[word.ToString()]).KeyWordAlias + "</b></align>\n";
             }
-            if (summon.Battlecry.action != Action.None)
+            
+            foreach(NamedAction action in summon.namedActions)
             {
-                string ActionText = "<b>Battlecry:</b> Do " + (summon.Battlecry.actionValue > 0 ? summon.Battlecry.actionValue +" ": "") + ObjectNames.NicifyVariableName(summon.Battlecry.action.ToString()) + " to" + (summon.Battlecry.targetCount > 0 ? summon.Battlecry.targetCount : "") + " " + ObjectNames.NicifyVariableName(summon.Battlecry.target.ToString());
-                CardText += ActionText+"\n";
+                if (action.pair.action != Action.None)
+                {
+                    string ActionText = "<b>" + KeywordAliases.getWordAlias(action.actionName) + ":</b> Do " + (action.pair.actionValue > 0 ? action.pair.actionValue + " " : "") + ObjectNames.NicifyVariableName(action.pair.action.ToString()) + " to" + (action.pair.targetCount > 0 ? action.pair.targetCount : "") + " " + ObjectNames.NicifyVariableName(action.pair.target.ToString());
+                    CardText += ActionText + "\n";
+                }
             }
-            if (summon.Deathrattle.action != Action.None)
-            {
-                string ActionText = "<b>Deathrattle:</b> Do " + (summon.Deathrattle.actionValue > 0 ? summon.Deathrattle.actionValue+ " ": "") + ObjectNames.NicifyVariableName(summon.Deathrattle.action.ToString()) + " to" + summon.Deathrattle.targetCount + " " + ObjectNames.NicifyVariableName(summon.Deathrattle.target.ToString());
-                CardText += ActionText + "\n";
-            }
+           
 
             NameBanner.text = CardName;
             CardDescription.text = CardText;

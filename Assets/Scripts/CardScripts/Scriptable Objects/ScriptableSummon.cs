@@ -17,6 +17,5 @@ public class ScriptableSummon : ScriptableCard
     public List<SummonType> CardType = new List<SummonType>();
     public List<ActionTargetPair> EndOfTurnEffects = new List<ActionTargetPair>();
     public List<ActionTargetPair> StartOfTurnEffects = new List<ActionTargetPair>();
-    public ActionTargetPair Battlecry = new ActionTargetPair();
-    public ActionTargetPair Deathrattle = new ActionTargetPair();
+    public List<NamedAction> namedActions = new List<NamedAction>();
 }
