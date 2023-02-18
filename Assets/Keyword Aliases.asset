@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aliasList:
   - KeyWord: 0
-    KeyWordAlias: Block
+    KeyWordAlias: Taunt
   - KeyWord: 1
     KeyWordAlias: Readied
   - KeyWord: 2
