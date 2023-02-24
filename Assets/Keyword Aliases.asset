@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aliasList:
   - KeyWord: 0
-    KeyWordAlias: Taunt
+    KeyWordAlias: Goad
   - KeyWord: 1
     KeyWordAlias: Readied
   - KeyWord: 2
@@ -24,7 +24,7 @@ MonoBehaviour:
   - KeyWord: 4
     KeyWordAlias: Empower
   - KeyWord: -1
-    KeyWordAlias: 22
+    KeyWordAlias: None
   wordList:
   - word: Battlecry
     alias: Challenge

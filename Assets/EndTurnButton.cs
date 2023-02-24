@@ -17,6 +17,7 @@ public class EndTurnButton : MonoBehaviour
     }
 
     public void EndTurn()
+
     {
         GameRunner.instance.EndTurn();
     }

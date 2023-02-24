@@ -21,6 +21,7 @@ public class CardSetup : MonoBehaviour
     [SerializeField] TextMeshProUGUI DamageBanner;
     [SerializeField] TextMeshProUGUI CostBanner;
     [SerializeField] TextMeshProUGUI TypeBanner;
+    bool initialized = false;
 
     void Awake()
     {
@@ -29,16 +30,23 @@ public class CardSetup : MonoBehaviour
             if (CardData.GetType() == typeof(ScriptableSummon))
             {
                 SetUpSummon();
+                initialized = true;
             }
             else if (CardData.GetType() == typeof(ScriptableCast))
             {
                 SetUpCastable();
+                initialized = true;
             }
             else
             {
                 CardName = "invalid card";
                 CardText = "Bad card type";
+                initialized = true;
             }
+        }
+        else
+        {
+            initialized = false;
         }
     }
 
@@ -55,7 +63,7 @@ public class CardSetup : MonoBehaviour
             CardText = "";
             foreach (keywords word in summon.CardKeywords)
             {
-                CardText += "<align=\"center\"><b>" + (KeywordAliases.getAliases()[word.ToString()]).KeyWordAlias + "</b></align>\n";
+                CardText += "<align=\"center\"><b>" + (KeywordAliases.getAlias(word.ToString())) + "</b></align>\n";
             }
             
             foreach(NamedAction action in summon.namedActions)
@@ -118,6 +126,22 @@ public class CardSetup : MonoBehaviour
                 TypeBanner.text = castType.ToString();
             }
             CostBanner.text = CardCost.ToString();
+        }else if(initialized == false && CardData != null)
+        {
+            if (CardData.GetType() == typeof(ScriptableSummon))
+            {
+                SetUpSummon();
+            }
+            else if (CardData.GetType() == typeof(ScriptableCast))
+            {
+                SetUpCastable();
+            }
+            else
+            {
+                CardName = "invalid card";
+                CardText = "Bad card type";
+            }
+            initialized = true;
         }
 
     }

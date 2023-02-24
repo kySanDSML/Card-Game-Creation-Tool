@@ -53,6 +53,7 @@ public enum keywords
     Doublestrike,
     Lifesteal,
     Empower,
+    Testing,
     None = -1
 }
 

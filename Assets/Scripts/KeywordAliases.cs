@@ -14,6 +14,19 @@ public class KeywordAliases : ScriptableSingleton<KeywordAliases>
         return aliases;
     }
 
+    public static string getAlias(string key)
+    {
+        if (aliases.ContainsKey(key))
+        {
+            Debug.Log("Base word: " + aliases[key].KeyWord + " Alias: " + aliases[key].KeyWordAlias);
+            return aliases[key].KeyWordAlias;
+        }
+        else
+        {
+            return key;
+        }
+    }
+
     public static KeywordAliases Instance { get; private set; }
     private void Awake()
     {
@@ -69,7 +82,7 @@ public class KeywordAliases : ScriptableSingleton<KeywordAliases>
         foreach (WordStringPair ksp in wordList)
         {
             wordAliases[ksp.word] = ksp;
-            Debug.Log(wordAliases[ksp.word].word + " = " + wordAliases[ksp.word].alias);
+            //Debug.Log(wordAliases[ksp.word].word + " = " + wordAliases[ksp.word].alias);
         }
         Debug.Log(aliases.Count);
     }
