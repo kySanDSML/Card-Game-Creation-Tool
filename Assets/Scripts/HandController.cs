@@ -8,7 +8,7 @@ public class HandController : MonoBehaviour
     int DrawHandStart = 2; //draw cards at game start.
     [SerializeField] public List<ScriptableCard> Deck = new List<ScriptableCard>();
     [SerializeField] List<ScriptableCard> GameDeck = new List<ScriptableCard>();
-    [SerializeField] List<ScriptableCard> Hand = new List<ScriptableCard>(); //
+    [SerializeField] List<ScriptableCard> Hand = new List<ScriptableCard>(); 
     void Awake()
     {
 
