@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameState { START, PLAYER0_TURN, PLAYER1_TURN, PLAYER0_WIN, PLAYER1_WIN, DRAW}
 
@@ -9,6 +10,7 @@ public class GameRunner : MonoBehaviour
     public GameState state;
     public GameObject Player0;
     public GameObject Player1;
+    public GameObject EndTurnButton;
     public static GameRunner instance { get; private set; }
     // Start is called before the first frame update
 
@@ -35,6 +37,8 @@ public class GameRunner : MonoBehaviour
         //no setup for now.
         yield return new WaitForSeconds(1.5f);
         state = GameState.PLAYER0_TURN;
+        Player0.BroadcastMessage("GameStart");
+        Player1.BroadcastMessage("GameStart");
         PlayerTurns();
     }
 
@@ -49,18 +53,23 @@ public class GameRunner : MonoBehaviour
         if(state == GameState.PLAYER0_TURN)
         {
             //player0's turn
-            Debug.Log("Player 0 turn");
+            // Debug.Log("Player 0 turn");
+            Player1.BroadcastMessage("DeactiveHand", EndTurnButton);
+            Player0.BroadcastMessage("ActiveHand", EndTurnButton);
         }
         else if(state == GameState.PLAYER1_TURN)
         {
             //player1's turn
-            Debug.Log("Player 1 turn");
+            Player0.BroadcastMessage("DeactiveHand", EndTurnButton);
+            Player1.BroadcastMessage("ActiveHand", EndTurnButton);
+           // Debug.Log("Player 1 turn");
         }
     }
 
     public void EndTurn()
     {
-        if(state == GameState.PLAYER0_TURN)
+        EndTurnButton.SetActive(false);
+        if (state == GameState.PLAYER0_TURN)
         {
             state = GameState.PLAYER1_TURN;
             StartCoroutine(PlayerTurns());

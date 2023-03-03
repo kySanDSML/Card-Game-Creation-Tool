@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
-    int DrawPerTurn = 0; //draw cards at turn draw phase.
-    int DrawHandStart = 0; //draw cards at game start.
-    List<ScriptableCard> GameDeck = new List<ScriptableCard>();
+    int DrawPerTurn = 1; //draw cards at turn draw phase.
+    int DrawHandStart = 2; //draw cards at game start.
     [SerializeField] public List<ScriptableCard> Deck = new List<ScriptableCard>();
-
-    List<ScriptableCard> Hand = new List<ScriptableCard>(); //
+    [SerializeField] List<ScriptableCard> GameDeck = new List<ScriptableCard>();
+    [SerializeField] List<ScriptableCard> Hand = new List<ScriptableCard>(); //
     void Awake()
     {
 
@@ -29,6 +28,14 @@ public class HandController : MonoBehaviour
     void DrawStartingCards()
     {
         for(int i = 0; i < DrawHandStart; i++)
+        {
+            TryDraw();
+        }
+    }
+
+    void DrawStartOfTurn()
+    {
+        for (int i = 0; i < DrawPerTurn; i++)
         {
             TryDraw();
         }
@@ -66,13 +73,18 @@ public class HandController : MonoBehaviour
         //any fancy hand set up?
     }
 
-    void ActiveHand()
+    IEnumerator ActiveHand(GameObject ETB)
     {
-        BroadcastMessage("tellCardTurn", true); //all cards are told that it is their player's turn;
+        Debug.Log(gameObject.name + " is turn.");
+        BroadcastMessage("tellCardTurn", true , SendMessageOptions.DontRequireReceiver); //all cards are told that it is their player's turn;
+        DrawStartOfTurn();
+        yield return new WaitForSeconds(2.0f);
+        ETB.SetActive(true);
     }
 
-    void DeactiveHand()
+    IEnumerator DeactiveHand(GameObject ETB)
     {
-        BroadcastMessage("tellCardTurn", false); //all cards are told that it is no longer their player's turn;
+        BroadcastMessage("tellCardTurn", false, SendMessageOptions.DontRequireReceiver); //all cards are told that it is no longer their player's turn;
+        yield return new WaitForSeconds(1.0f);
     }
 }
