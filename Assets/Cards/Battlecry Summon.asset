@@ -18,10 +18,14 @@ MonoBehaviour:
   cost: 6
   team: 0
   canAttack: 0
-  CardKeywords: 00000000
+  CardKeywords: 000000000300000001000000
   CardType: 010000000200000000000000
   EndOfTurnEffects: []
-  StartOfTurnEffects: []
+  StartOfTurnEffects:
+  - action: 1
+    actionValue: 9
+    target: 0
+    targetCount: 0
   namedActions:
   - actionName: Battlecry
     pair:

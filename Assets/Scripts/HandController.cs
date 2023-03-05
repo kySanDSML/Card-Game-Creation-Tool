@@ -8,7 +8,8 @@ public class HandController : MonoBehaviour
     int DrawHandStart = 2; //draw cards at game start.
     [SerializeField] public List<ScriptableCard> Deck = new List<ScriptableCard>();
     [SerializeField] List<ScriptableCard> GameDeck = new List<ScriptableCard>();
-    [SerializeField] List<ScriptableCard> Hand = new List<ScriptableCard>(); 
+    [SerializeField] List<ScriptableCard> Hand = new List<ScriptableCard>();
+    [SerializeField] GameObject Card;
     void Awake()
     {
 
@@ -54,13 +55,26 @@ public class HandController : MonoBehaviour
         //else, draw card.
         if(GameDeck.Count > 0)
         {
-            Hand.Add(GameDeck[0]); //adds card to hand.
+            StartCoroutine(AddCardToHand(GameDeck[0])); //adds card to hand.
             GameDeck.RemoveAt(0); //removes card from deck.
         }
         else
         {
             DoDeckOut();
         }
+    }
+
+    public virtual IEnumerator AddCardToHand(ScriptableCard cardScript)
+    {
+        yield return new WaitForSeconds(0.25f); //wait a second.
+        float handWidth = this.gameObject.GetComponent<RectTransform>().sizeDelta.x;
+        Debug.Log(handWidth);
+        float newLocation = (Card.GetComponent<RectTransform>().sizeDelta.x + 20)* Hand.Count + Card.GetComponent<RectTransform>().sizeDelta.x * 0.5f;
+        GameObject newCard = Instantiate(Card, this.gameObject.transform);
+        newCard.transform.localPosition = new Vector3(handWidth / 2.0f - newLocation, 0, 0);
+        newCard.GetComponent<CardSetup>().CardData = cardScript;
+        newCard.GetComponent<CardSetup>().SetUp();
+        Hand.Add(cardScript);
     }
 
     void DoDeckOut()

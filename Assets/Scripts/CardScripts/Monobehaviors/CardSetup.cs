@@ -6,7 +6,7 @@ using TMPro;
 using Unity.UI;
 public class CardSetup : MonoBehaviour
 {
-    [SerializeField] ScriptableCard CardData;
+    [SerializeField] public ScriptableCard CardData;
     [SerializeField] string CardName;
     [SerializeField] string CardText;
     [SerializeField] int CardHealth = 0;
@@ -21,28 +21,17 @@ public class CardSetup : MonoBehaviour
     [SerializeField] TextMeshProUGUI DamageBanner;
     [SerializeField] TextMeshProUGUI CostBanner;
     [SerializeField] TextMeshProUGUI TypeBanner;
-    bool initialized = false;
+    [SerializeField] GameObject HealthBannerHold;
+    [SerializeField] GameObject DamageBannerHold;
+    [SerializeField] GameObject TypeBannerHold;
+
+    [SerializeField] bool initialized = false;
 
     void Awake()
     {
-        if(CardData != null)
+        if(CardData != null && !initialized)
         {
-            if (CardData.GetType() == typeof(ScriptableSummon))
-            {
-                SetUpSummon();
-                initialized = true;
-            }
-            else if (CardData.GetType() == typeof(ScriptableCast))
-            {
-                SetUpCastable();
-                initialized = true;
-            }
-            else
-            {
-                CardName = "invalid card";
-                CardText = "Bad card type";
-                initialized = true;
-            }
+            SetUp();
         }
         else
         {
@@ -54,6 +43,20 @@ public class CardSetup : MonoBehaviour
     {
         if(CardData.GetType() == typeof(ScriptableSummon))
         {
+            if (HealthBannerHold != null)
+            {
+                HealthBannerHold.SetActive(true);
+            }
+
+            if (DamageBannerHold != null)
+            {
+                DamageBannerHold.SetActive(true);
+            }
+
+            if(TypeBannerHold != null)
+            {
+                TypeBannerHold.GetComponent<UnityEngine.UI.Image>().color = new Color32(170, 139, 221, 255);
+            }
             ScriptableSummon summon = (ScriptableSummon)CardData;
             CardHealth = summon.health;
             CardDamage = summon.damage;
@@ -90,6 +93,20 @@ public class CardSetup : MonoBehaviour
     {
         if (CardData.GetType() == typeof(ScriptableCast))
         {
+            if (HealthBannerHold != null)
+            {
+                HealthBannerHold.SetActive(false);
+            }
+
+            if (DamageBannerHold != null)
+            {
+                DamageBannerHold.SetActive(false);
+            }
+
+            if (TypeBannerHold != null)
+            {
+                TypeBannerHold.GetComponent<UnityEngine.UI.Image>().color = new Color32(0, 229, 225, 255);
+            }
             ScriptableCast castable = (ScriptableCast)CardData;
             CardCost = castable.cost;
             CardName = castable.CardName;
@@ -119,7 +136,7 @@ public class CardSetup : MonoBehaviour
             {
                 HealthBanner.text = CardHealth.ToString();
                 DamageBanner.text = CardDamage.ToString();
-                TypeBanner.text = summonType[0].ToString();
+                TypeBanner.text = summonType.Count > 0 ? summonType[0].ToString() : "None";
             }
             else if (CardData.GetType() == typeof(ScriptableCast))
             {
@@ -127,6 +144,16 @@ public class CardSetup : MonoBehaviour
             }
             CostBanner.text = CardCost.ToString();
         }else if(initialized == false && CardData != null)
+        {
+            SetUp();
+            initialized = true;
+        }
+
+    }
+
+    public void SetUp()
+    {
+        if(CardData != null)
         {
             if (CardData.GetType() == typeof(ScriptableSummon))
             {
@@ -141,8 +168,6 @@ public class CardSetup : MonoBehaviour
                 CardName = "invalid card";
                 CardText = "Bad card type";
             }
-            initialized = true;
         }
-
     }
 }
