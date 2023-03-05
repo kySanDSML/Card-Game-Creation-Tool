@@ -9,6 +9,8 @@ TagManager:
   - PlayerDeck
   - Field1
   - Field2
+  - Player0
+  - Player1
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - CardUI
   - 
   - 
   - 
@@ -45,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: CardUI
+    uniqueID: 2252758865
     locked: 0

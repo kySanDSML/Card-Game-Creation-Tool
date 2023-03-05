@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8171716642054683292}
   - component: {fileID: 8171716642054683282}
   - component: {fileID: 8171716642054683293}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CostBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8171716642172808455}
   - component: {fileID: 8171716642172808453}
   - component: {fileID: 8171716642172808452}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: AttackBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 8171716642255727461}
   - component: {fileID: 8171716642255727259}
   - component: {fileID: 8171716642255727258}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 8171716642316262291}
   - component: {fileID: 8171716642316262289}
   - component: {fileID: 8171716642316262288}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CardInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 8171716642358305615}
   - component: {fileID: 8171716642358305613}
   - component: {fileID: 8171716642358305612}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,9 @@ GameObject:
   - component: {fileID: 8171716642404849324}
   - component: {fileID: 8171716642404849327}
   - component: {fileID: 8171716642404849325}
-  m_Layer: 5
+  - component: {fileID: 7890149299216859118}
+  - component: {fileID: 5408502623490477581}
+  m_Layer: 6
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,6 +617,31 @@ MonoBehaviour:
   DamageBannerHold: {fileID: 8171716642172808454}
   TypeBannerHold: {fileID: 8171716643585390211}
   initialized: 0
+--- !u!114 &7890149299216859118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171716642404849321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5ab04d822cc4749b7b92d5be477988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validDropPoint: 0
+--- !u!225 &5408502623490477581
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171716642404849321}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8171716642687130557
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +653,7 @@ GameObject:
   - component: {fileID: 8171716642687130546}
   - component: {fileID: 8171716642687130544}
   - component: {fileID: 8171716642687130547}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +729,7 @@ GameObject:
   - component: {fileID: 8171716642739483530}
   - component: {fileID: 8171716642739483528}
   - component: {fileID: 8171716642739483531}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +864,7 @@ GameObject:
   - component: {fileID: 8171716643008292812}
   - component: {fileID: 8171716643008292802}
   - component: {fileID: 8171716643008292813}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HealthBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +941,7 @@ GameObject:
   - component: {fileID: 8171716643078707140}
   - component: {fileID: 8171716643078707194}
   - component: {fileID: 8171716643078707141}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CardProperties
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1080,7 @@ GameObject:
   - component: {fileID: 8171716643263844410}
   - component: {fileID: 8171716643263844408}
   - component: {fileID: 8171716643263844411}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CardType
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1188,7 +1215,7 @@ GameObject:
   - component: {fileID: 8171716643450260564}
   - component: {fileID: 8171716643450260554}
   - component: {fileID: 8171716643450260565}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CardName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1350,7 @@ GameObject:
   - component: {fileID: 8171716643585390208}
   - component: {fileID: 8171716643585390214}
   - component: {fileID: 8171716643585390209}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: TypeBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1427,7 @@ GameObject:
   - component: {fileID: 8171716643730291409}
   - component: {fileID: 8171716643730291415}
   - component: {fileID: 8171716643730291414}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: NameBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
