@@ -6,6 +6,7 @@ using TMPro;
 using Unity.UI;
 public class CardSetup : MonoBehaviour
 {
+    [SerializeField] int player = 1;
     [SerializeField] public ScriptableCard CardData;
     [SerializeField] string CardName;
     [SerializeField] string CardText;
@@ -14,7 +15,11 @@ public class CardSetup : MonoBehaviour
     [SerializeField] int CardCost = 0;
     [SerializeField] List<SummonType> summonType = new List<SummonType>();
     [SerializeField] CastType castType;
-
+    [SerializeField] bool playedOnlyOnTurn = true;
+    [SerializeField] public int CurrCardHealth = 0;
+    [SerializeField] public int CurrCardDamage = 0;
+    [SerializeField] public int CurrCardCost = 0;
+    public bool PlayedOnlyOnTurn { get; set; }
     [SerializeField] TextMeshProUGUI NameBanner;
     [SerializeField] TextMeshProUGUI CardDescription;
     [SerializeField] TextMeshProUGUI HealthBanner;
@@ -27,6 +32,9 @@ public class CardSetup : MonoBehaviour
 
     [SerializeField] bool initialized = false;
 
+    private GameObject OGparent;
+    private Vector3 initialPos;
+
     void Awake()
     {
         if(CardData != null && !initialized)
@@ -37,6 +45,16 @@ public class CardSetup : MonoBehaviour
         {
             initialized = false;
         }
+    }
+
+    public void setPlayer(int value)
+    {
+        player = value;
+    }
+
+    public int getPlayer()
+    {
+        return player;
     }
 
     void SetUpSummon()
@@ -61,9 +79,13 @@ public class CardSetup : MonoBehaviour
             CardHealth = summon.health;
             CardDamage = summon.damage;
             CardCost = summon.cost;
+            CurrCardHealth = summon.health;
+            CurrCardDamage = summon.damage;
+            CurrCardCost = summon.cost;
             CardName = summon.CardName;
             summonType = summon.CardType;
             CardText = "";
+            playedOnlyOnTurn = summon.playedOnlyOnTurn;
             foreach (keywords word in summon.CardKeywords)
             {
                 CardText += "<align=\"center\"><b>" + (KeywordAliases.getAlias(word.ToString())) + "</b></align>\n";
@@ -111,7 +133,9 @@ public class CardSetup : MonoBehaviour
             CardCost = castable.cost;
             CardName = castable.CardName;
             castType = (castable.CardType);
+            CurrCardCost = castable.cost;
             CardText = "";
+            playedOnlyOnTurn = castable.playedOnlyOnTurn;
             foreach (ActionTargetPair action in castable.actions)
             {
                 string ActionText = "Do " + (action.actionValue > 0 ? action.actionValue + " " : "") + ObjectNames.NicifyVariableName(action.action.ToString()) + " to" + (action.targetCount > 0 ? action.targetCount : "") + " " + ObjectNames.NicifyVariableName(action.target.ToString());
@@ -149,6 +173,15 @@ public class CardSetup : MonoBehaviour
             initialized = true;
         }
 
+        if(player == 0)
+        {
+            this.gameObject.GetComponent<CardDrag>().enabled = true;
+        }
+        else
+        {
+            this.gameObject.GetComponent<CardDrag>().enabled = false;
+        }
+
     }
 
     public void SetUp()
@@ -169,5 +202,28 @@ public class CardSetup : MonoBehaviour
                 CardText = "Bad card type";
             }
         }
+
+        OGparent = transform.parent.gameObject;
+        initialPos = GetComponent<RectTransform>().anchoredPosition;
+    }
+
+    public virtual void Played()
+    {
+        CostBanner.transform.parent.gameObject.SetActive(false);
+        this.transform.parent.TryGetComponent<HandController>(out HandController hc );
+        if(hc != null)
+        {
+            hc.RemoveFromHand(this.gameObject);
+        }
+        GetComponent<CardControl>().PlayedCard(CurrCardCost);
+
+        //NOW DO EFFECT.
+    }
+
+    public virtual void Returned()
+    {
+        CostBanner.transform.parent.gameObject.SetActive(true);
+        transform.SetParent(OGparent.transform);
+        GetComponent<RectTransform>().anchoredPosition = initialPos;
     }
 }

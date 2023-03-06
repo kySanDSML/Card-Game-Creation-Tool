@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class ScriptableCard : ScriptableObject
 {
-    bool isPlayerTurn = true; //initially cards are not 
-
-    void tellCardTurn(bool isTurn)
-    {
-        isPlayerTurn = isTurn;
-    }
+    [SerializeField] public bool playedOnlyOnTurn = true;
 }
