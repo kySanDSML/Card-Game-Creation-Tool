@@ -29,6 +29,7 @@ public class CardSetup : MonoBehaviour
     [SerializeField] GameObject HealthBannerHold;
     [SerializeField] GameObject DamageBannerHold;
     [SerializeField] GameObject TypeBannerHold;
+    [SerializeField] public bool needsTarget;
 
     [SerializeField] bool initialized = false;
 
@@ -135,6 +136,7 @@ public class CardSetup : MonoBehaviour
             castType = (castable.CardType);
             CurrCardCost = castable.cost;
             CardText = "";
+            needsTarget = castable.needsTarget;
             playedOnlyOnTurn = castable.playedOnlyOnTurn;
             foreach (ActionTargetPair action in castable.actions)
             {
@@ -158,28 +160,31 @@ public class CardSetup : MonoBehaviour
             CardDescription.text = CardText;
             if (CardData.GetType() == typeof(ScriptableSummon))
             {
-                HealthBanner.text = CardHealth.ToString();
-                DamageBanner.text = CardDamage.ToString();
+                HealthBanner.text = CurrCardHealth.ToString();
+                DamageBanner.text = CurrCardDamage.ToString();
                 TypeBanner.text = summonType.Count > 0 ? summonType[0].ToString() : "None";
             }
             else if (CardData.GetType() == typeof(ScriptableCast))
             {
                 TypeBanner.text = castType.ToString();
             }
-            CostBanner.text = CardCost.ToString();
+            CostBanner.text = CurrCardCost.ToString();
         }else if(initialized == false && CardData != null)
         {
             SetUp();
             initialized = true;
         }
 
-        if(player == 0)
+        if(player == 0 && !played)
         {
             this.gameObject.GetComponent<CardDrag>().enabled = true;
         }
         else
         {
-            this.gameObject.GetComponent<CardDrag>().enabled = false;
+            if (!played && gameObject.GetComponent<CardDrag>() != null)
+            {
+                this.gameObject.GetComponent<CardDrag>().enabled = false;
+            }
         }
 
     }
@@ -206,7 +211,7 @@ public class CardSetup : MonoBehaviour
         OGparent = transform.parent.gameObject;
         initialPos = GetComponent<RectTransform>().anchoredPosition;
     }
-
+    public bool played = false;
     public virtual void Played()
     {
         CostBanner.transform.parent.gameObject.SetActive(false);
@@ -215,8 +220,8 @@ public class CardSetup : MonoBehaviour
         {
             hc.RemoveFromHand(this.gameObject);
         }
+        played = true;
         GetComponent<CardControl>().PlayedCard(CurrCardCost);
-
         //NOW DO EFFECT.
     }
 
@@ -225,5 +230,7 @@ public class CardSetup : MonoBehaviour
         CostBanner.transform.parent.gameObject.SetActive(true);
         transform.SetParent(OGparent.transform);
         GetComponent<RectTransform>().anchoredPosition = initialPos;
+        GetComponent<CardControl>().isPlaced = false;
+        played = false;
     }
 }

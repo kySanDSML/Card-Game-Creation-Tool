@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler 
+public class CardDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler , IPointerEnterHandler, IPointerExitHandler
 {
     // Start is called before the first frame update
     private RectTransform rectTransform;
+    private Vector3 cachedScale;
     private Vector3 initialPos;
     private CanvasGroup canvasGroup;
     private GameObject OGparent;
@@ -16,10 +17,14 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         OGparent = transform.parent.gameObject;
+        cachedScale = rectTransform.transform.localScale;
     }
     
     public void OnBeginDrag(PointerEventData eventData)
     {
+        rectTransform.anchoredPosition -= new Vector2(0, rectTransform.sizeDelta.y / 2 * 1.3f);
+        rectTransform.transform.localScale = cachedScale;
+        rectTransform.SetSiblingIndex(initialIndex);
         initialPos = rectTransform.anchoredPosition;
         canvasGroup.blocksRaycasts = false;
     }
@@ -33,6 +38,7 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         }
     }
     public bool outside = true;
+    public bool hasTarget = false;
     public void OnEndDrag(PointerEventData eventData)
     {
       //  Debug.Log("OnEndDrag");
@@ -40,9 +46,12 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         {
             if (GetComponent<CardControl>().isPlayable() && GetComponent<CardSetup>().CardData.GetType() == typeof(ScriptableCast))
             {
-                GetComponent<CardDrag>().enabled = false;
-                GetComponent<CardSetup>().Played();
-                Destroy(this.gameObject);
+                if(!GetComponent<CardSetup>().needsTarget || hasTarget)
+                {
+                    GetComponent<CardDrag>().enabled = false;
+                    GetComponent<CardSetup>().Played();
+                    Destroy(this.gameObject);
+                }
             }
         }
         canvasGroup.blocksRaycasts = true;
@@ -51,6 +60,24 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnPointerDown(PointerEventData eventData){
      //   Debug.Log("OnPointerDown");
+    }
+
+    int initialIndex;
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        initialPos = rectTransform.anchoredPosition;
+        initialIndex = rectTransform.GetSiblingIndex();
+        rectTransform.SetAsLastSibling();
+        rectTransform.transform.localScale = cachedScale * 1.5f;
+        rectTransform.anchoredPosition += new Vector2 (0, rectTransform.sizeDelta.y/2 * 1.3f);
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        rectTransform.transform.localScale = cachedScale;
+        rectTransform.SetSiblingIndex(initialIndex);
+        rectTransform.anchoredPosition = initialPos;
     }
 
     public void returnToHand()

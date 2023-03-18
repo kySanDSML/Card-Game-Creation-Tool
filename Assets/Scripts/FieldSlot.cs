@@ -35,10 +35,13 @@ public class FieldSlot : MonoBehaviour, IDropHandler
             //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             if (eventData.pointerDrag.GetComponent<CardSetup>().CardData.GetType() == typeof(ScriptableSummon))
             {
-                eventData.pointerDrag.GetComponent<CardDrag>().enabled = false;
+                Destroy(eventData.pointerDrag.GetComponent<CardDrag>());
                 eventData.pointerDrag.GetComponent<CardSetup>().Played();
                 eventData.pointerDrag.transform.SetParent(this.gameObject.transform);
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+                eventData.pointerDrag.AddComponent(typeof(SummonDrag));
+                eventData.pointerDrag.GetComponent<SummonDrag>().enabled = true;
+                eventData.pointerDrag.GetComponent<SummonDrag>().newSummon = true;
             }
         }
         else

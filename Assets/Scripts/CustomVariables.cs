@@ -64,6 +64,13 @@ public enum CastType
     Quest
 }
 
+public enum EnergyRegenType
+{
+    NoRegen,
+    Incremental,
+    MaxEnergy
+}
+
 [System.Serializable]
 public class CastTargetPair
 {

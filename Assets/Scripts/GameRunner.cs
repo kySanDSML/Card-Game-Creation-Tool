@@ -38,6 +38,7 @@ public class GameRunner : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         state = GameState.PLAYER0_TURN;
         Player0.BroadcastMessage("GameStart");
+        Player0.GetComponent<TurnHandler>().OnTurnStart();
         Player1.BroadcastMessage("GameStart");
         PlayerTurns();
     }
@@ -56,12 +57,14 @@ public class GameRunner : MonoBehaviour
             // Debug.Log("Player 0 turn");
             Player1.BroadcastMessage("DeactiveHand", EndTurnButton);
             Player0.BroadcastMessage("ActiveHand", EndTurnButton);
+            Player0.GetComponent<TurnHandler>().OnTurnStart();
         }
         else if(state == GameState.PLAYER1_TURN)
         {
             //player1's turn
             Player0.BroadcastMessage("DeactiveHand", EndTurnButton);
             Player1.BroadcastMessage("ActiveHand", EndTurnButton);
+            Player1.GetComponent<TurnHandler>().OnTurnStart();
            // Debug.Log("Player 1 turn");
         }
     }

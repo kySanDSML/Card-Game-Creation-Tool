@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] int maxEnergy;
     [SerializeField] int health;
     [SerializeField] int maxHealth;
+    public TurnHandler th;
 
     public int getEnergy()
     {
@@ -30,6 +31,10 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public int getMaxEnergy()
+    {
+        return maxEnergy;
+    }
     // Start is called before the first frame update
     void Start()
     {

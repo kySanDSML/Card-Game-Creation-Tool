@@ -600,6 +600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a0b9336a96dc44a8aae009b1edfa39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaced: 0
+  target: {fileID: 0}
 --- !u!114 &8171716642404849325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +623,10 @@ MonoBehaviour:
   CardCost: 0
   summonType: 
   castType: 0
+  playedOnlyOnTurn: 1
+  CurrCardHealth: 0
+  CurrCardDamage: 0
+  CurrCardCost: 0
   NameBanner: {fileID: 8171716643450260565}
   CardDescription: {fileID: 8171716643078707141}
   HealthBanner: {fileID: 8171716642255727258}
@@ -630,7 +636,9 @@ MonoBehaviour:
   HealthBannerHold: {fileID: 8171716643008292815}
   DamageBannerHold: {fileID: 8171716642172808454}
   TypeBannerHold: {fileID: 8171716643585390211}
+  needsTarget: 0
   initialized: 0
+  played: 0
 --- !u!114 &7890149299216859118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,6 +651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5ab04d822cc4749b7b92d5be477988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDrag: 1
+  outside: 1
+  hasTarget: 0
 --- !u!225 &5408502623490477581
 CanvasGroup:
   m_ObjectHideFlags: 0

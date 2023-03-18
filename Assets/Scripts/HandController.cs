@@ -120,6 +120,9 @@ public class HandController : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Dropped on Hand.");
-        eventData.pointerDrag.GetComponent<CardDrag>().outside = false;
+        if (eventData.pointerDrag.GetComponent<CardDrag>() != null)
+        {
+            eventData.pointerDrag.GetComponent<CardDrag>().outside = false;
+        }
     }
 }

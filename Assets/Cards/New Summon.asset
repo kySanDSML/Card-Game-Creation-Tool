@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee021b24a9610642a720a0d3dc3c402, type: 3}
   m_Name: New Summon
   m_EditorClassIdentifier: 
+  playedOnlyOnTurn: 1
   CardName: Angry Boi
-  health: 0
-  damage: 0
+  health: 2
+  damage: 1
   cost: 0
   team: 0
   canAttack: 0
@@ -30,13 +31,4 @@ MonoBehaviour:
     actionValue: 0
     target: 0
     targetCount: 0
-  Battlecry:
-    action: 0
-    actionValue: 0
-    target: 0
-    targetCount: 0
-  FinalWord:
-    action: 0
-    actionValue: 0
-    target: 0
-    targetCount: 0
+  namedActions: []
