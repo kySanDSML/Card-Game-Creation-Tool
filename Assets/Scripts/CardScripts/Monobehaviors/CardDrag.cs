@@ -48,6 +48,7 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             {
                 if(!GetComponent<CardSetup>().needsTarget || hasTarget)
                 {
+                    Debug.Log("Doesn't need / has target.");
                     GetComponent<CardDrag>().enabled = false;
                     GetComponent<CardSetup>().Played();
                     Destroy(this.gameObject);

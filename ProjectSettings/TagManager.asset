@@ -11,6 +11,9 @@ TagManager:
   - Field2
   - Player0
   - Player1
+  - CardSlot
+  - CardSlotHolder
+  - Card
   layers:
   - Default
   - TransparentFX

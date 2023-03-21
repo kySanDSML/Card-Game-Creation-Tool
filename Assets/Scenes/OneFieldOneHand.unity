@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 17219158}
   m_Layer: 6
   m_Name: Card (2)
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   TypeBannerHold: {fileID: 295434431}
   needsTarget: 0
   initialized: 0
+  actions: []
   played: 0
 --- !u!114 &17219162
 MonoBehaviour:
@@ -472,8 +473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Deck:
-  - {fileID: 11400000, guid: 26c68ff9717f8894eadecb3641640728, type: 2}
   - {fileID: 11400000, guid: 226db63ec9b78ea40b30f139af280157, type: 2}
+  - {fileID: 11400000, guid: cadfcddec1e71484bb2dd56bb8ea3a40, type: 2}
   - {fileID: 11400000, guid: 74f83e1b15303d54d947124134d48b1c, type: 2}
   - {fileID: 11400000, guid: 74f83e1b15303d54d947124134d48b1c, type: 2}
   GameDeck: []
@@ -1428,7 +1429,7 @@ GameObject:
   - component: {fileID: 462562683}
   m_Layer: 5
   m_Name: CardSlot
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1733,7 +1734,7 @@ GameObject:
   - component: {fileID: 594085940}
   m_Layer: 5
   m_Name: CardSlot (4)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2357,7 +2358,7 @@ GameObject:
   - component: {fileID: 719340190}
   m_Layer: 5
   m_Name: CardSlot (6)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2446,7 +2447,7 @@ GameObject:
   - component: {fileID: 731567403}
   m_Layer: 5
   m_Name: CardSlot (3)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2885,7 +2886,7 @@ GameObject:
   - component: {fileID: 936864144}
   m_Layer: 5
   m_Name: CardSlot (5)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3231,7 +3232,7 @@ GameObject:
   - component: {fileID: 1021580959}
   m_Layer: 5
   m_Name: CardSlot (1)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4218,7 +4219,7 @@ GameObject:
   - component: {fileID: 1452538676}
   m_Layer: 5
   m_Name: CardSlot (5)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4577,7 +4578,7 @@ GameObject:
   - component: {fileID: 1554044172}
   m_Layer: 5
   m_Name: CardSlot (4)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4667,7 +4668,7 @@ GameObject:
   - component: {fileID: 1562461525}
   m_Layer: 5
   m_Name: CardSlot (6)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4756,7 +4757,7 @@ GameObject:
   - component: {fileID: 1564169431}
   m_Layer: 5
   m_Name: CardSlot (3)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4934,7 +4935,7 @@ GameObject:
   - component: {fileID: 1630323012}
   m_Layer: 5
   m_Name: CardSlots
-  m_TagString: Untagged
+  m_TagString: CardSlotHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4984,7 +4985,7 @@ GameObject:
   - component: {fileID: 1669994701}
   m_Layer: 6
   m_Name: Card (1)
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5093,6 +5094,7 @@ MonoBehaviour:
   TypeBannerHold: {fileID: 617796595}
   needsTarget: 0
   initialized: 0
+  actions: []
   played: 0
 --- !u!114 &1669994705
 MonoBehaviour:
@@ -5218,7 +5220,7 @@ GameObject:
   - component: {fileID: 1714850974}
   m_Layer: 5
   m_Name: CardSlot
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5377,7 +5379,7 @@ GameObject:
   - component: {fileID: 1725757648}
   m_Layer: 5
   m_Name: CardSlots
-  m_TagString: Untagged
+  m_TagString: CardSlotHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5439,8 +5441,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  Player0: {fileID: 1715317584}
-  Player1: {fileID: 1299163858}
+  GOPlayer0: {fileID: 1299163858}
+  GOPlayer1: {fileID: 1715317584}
   EndTurnButton: {fileID: 1458591325}
 --- !u!4 &1758982681
 Transform:
@@ -5683,7 +5685,7 @@ GameObject:
   - component: {fileID: 1892781017}
   m_Layer: 5
   m_Name: CardSlot (1)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5840,7 +5842,7 @@ GameObject:
   - component: {fileID: 1969699200}
   m_Layer: 5
   m_Name: CardSlot (2)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6006,7 +6008,7 @@ GameObject:
   - component: {fileID: 2093352652}
   m_Layer: 5
   m_Name: CardSlot (2)
-  m_TagString: Untagged
+  m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7070,6 +7072,7 @@ MonoBehaviour:
   TypeBannerHold: {fileID: 8847217771130863750}
   needsTarget: 0
   initialized: 0
+  actions: []
   played: 0
 --- !u!222 &8847217771545288873
 CanvasRenderer:
@@ -7152,7 +7155,7 @@ GameObject:
   - component: {fileID: 8847217771545288877}
   m_Layer: 6
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

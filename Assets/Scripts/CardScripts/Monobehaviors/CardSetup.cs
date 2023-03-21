@@ -10,9 +10,9 @@ public class CardSetup : MonoBehaviour
     [SerializeField] public ScriptableCard CardData;
     [SerializeField] string CardName;
     [SerializeField] string CardText;
-    [SerializeField] int CardHealth = 0;
-    [SerializeField] int CardDamage = 0;
-    [SerializeField] int CardCost = 0;
+    [SerializeField] public int CardHealth = 0;
+    [SerializeField] public int CardDamage = 0;
+    [SerializeField] public int CardCost = 0;
     [SerializeField] List<SummonType> summonType = new List<SummonType>();
     [SerializeField] CastType castType;
     [SerializeField] bool playedOnlyOnTurn = true;
@@ -32,6 +32,7 @@ public class CardSetup : MonoBehaviour
     [SerializeField] public bool needsTarget;
 
     [SerializeField] bool initialized = false;
+    [SerializeField] public List<ActionTargetPair> actions = new List<ActionTargetPair>();
 
     private GameObject OGparent;
     private Vector3 initialPos;
@@ -96,7 +97,7 @@ public class CardSetup : MonoBehaviour
             {
                 if (action.pair.action != Action.None)
                 {
-                    string ActionText = "<b>" + KeywordAliases.getWordAlias(action.actionName) + ":</b> Do " + (action.pair.actionValue > 0 ? action.pair.actionValue + " " : "") + ObjectNames.NicifyVariableName(action.pair.action.ToString()) + " to" + (action.pair.targetCount > 0 ? action.pair.targetCount : "") + " " + ObjectNames.NicifyVariableName(action.pair.target.ToString());
+                    string ActionText = "<b>" + KeywordAliases.getWordAlias(action.actionName) + ":</b> Do " + (action.pair.actionValue > 0 ? action.pair.actionValue + " " : "") + ObjectNames.NicifyVariableName(action.pair.action.ToString()) + " to" + (action.pair.repeatCount > 0 ? action.pair.repeatCount : "") + " " + ObjectNames.NicifyVariableName(action.pair.target.ToString());
                     CardText += ActionText + "\n";
                 }
             }
@@ -138,9 +139,10 @@ public class CardSetup : MonoBehaviour
             CardText = "";
             needsTarget = castable.needsTarget;
             playedOnlyOnTurn = castable.playedOnlyOnTurn;
+            actions = castable.actions;
             foreach (ActionTargetPair action in castable.actions)
             {
-                string ActionText = "Do " + (action.actionValue > 0 ? action.actionValue + " " : "") + ObjectNames.NicifyVariableName(action.action.ToString()) + " to" + (action.targetCount > 0 ? action.targetCount : "") + " " + ObjectNames.NicifyVariableName(action.target.ToString());
+                string ActionText = "Do " + (action.actionValue > 0 ? action.actionValue + " " : "") + ObjectNames.NicifyVariableName(action.action.ToString()) + " to" + (action.repeatCount > 0 ? action.repeatCount : "") + " " + ObjectNames.NicifyVariableName(action.target.ToString());
                 CardText += ActionText + "\n";
             }
 
@@ -223,6 +225,10 @@ public class CardSetup : MonoBehaviour
         played = true;
         GetComponent<CardControl>().PlayedCard(CurrCardCost);
         //NOW DO EFFECT.
+        if(needsTarget == false && CardData.GetType() == typeof(ScriptableCast))
+        {
+            GetComponent<CardControl>().ResolveActions(actions, null);
+        }
     }
 
     public virtual void Returned()

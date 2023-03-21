@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 5408502623490477581}
   m_Layer: 6
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,6 +638,7 @@ MonoBehaviour:
   TypeBannerHold: {fileID: 8171716643585390211}
   needsTarget: 0
   initialized: 0
+  actions: []
   played: 0
 --- !u!114 &7890149299216859118
 MonoBehaviour:

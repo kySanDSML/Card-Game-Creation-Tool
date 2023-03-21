@@ -11,12 +11,12 @@ public class FieldSlot : MonoBehaviour, IDropHandler
     {
         if(transform.parent.transform.parent.tag == "Player0")
         {
-            Debug.Log("Under player 0");
+            //Debug.Log("Under player 0");
             player = 0;
         }
         else
         {
-            Debug.Log("Under player 1");
+           // Debug.Log("Under player 1");
             player = 1;
         }
     }
@@ -29,7 +29,7 @@ public class FieldSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Dropped.");
+        //Debug.Log("Dropped.");
         if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<CardSetup>().getPlayer() == player && eventData.pointerDrag.GetComponent<CardControl>().isPlayable())
         {
             //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
@@ -49,6 +49,6 @@ public class FieldSlot : MonoBehaviour, IDropHandler
             eventData.pointerDrag.GetComponent<CardDrag>().returnToHand();
         }
 
-        Debug.Log("Player of Dragged card: "+eventData.pointerDrag.GetComponent<CardSetup>().getPlayer());
+        //Debug.Log("Player of Dragged card: "+eventData.pointerDrag.GetComponent<CardSetup>().getPlayer());
     }
 }

@@ -22,6 +22,8 @@ public class SummonDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     private Vector3 initialPos;
     private CanvasGroup canvasGroup;
     [SerializeField] int player;
+    [SerializeField] public int attacksLeft = 2;
+    [SerializeField] int attacksPerTurn = 1;
 
     void Awake()
     {
@@ -29,14 +31,17 @@ public class SummonDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
         canvasGroup = GetComponent<CanvasGroup>();
         if (transform.parent.transform.parent.transform.parent.tag == "Player0")
         {
-            Debug.Log("Under player 0");
+           // Debug.Log("Under player 0");
             player = 0;
         }
         else
         {
-            Debug.Log("Under player 1");
+           // Debug.Log("Under player 1");
             player = 1;
         }
+        newSummon = false;
+        attacksLeft = attacksPerTurn;
+
     }
     #region Drag
     public void OnBeginDrag(PointerEventData eventData)
@@ -47,7 +52,7 @@ public class SummonDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (GetComponent<CardControl>().isPlayable())
+        if (!newSummon)
         {
             rectTransform.anchoredPosition += eventData.delta;
         }
@@ -81,6 +86,7 @@ public class SummonDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
             {
                 //Do Action on Summon.
                 eventData.pointerDrag.GetComponent<CardDrag>().hasTarget = true;
+                eventData.pointerDrag.GetComponent<CardControl>().ResolveActions(eventData.pointerDrag.GetComponent<CardSetup>().actions, this.gameObject);
             }
         }
     }
@@ -88,7 +94,7 @@ public class SummonDrag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     bool validCastTarget(CardSetup offensiveCast)
     {
         //Debug.Log()
-        return false;
+        return true;
     }
     #endregion
     #region PointerOn

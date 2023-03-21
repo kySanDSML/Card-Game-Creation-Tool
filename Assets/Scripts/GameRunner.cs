@@ -8,8 +8,10 @@ public enum GameState { START, PLAYER0_TURN, PLAYER1_TURN, PLAYER0_WIN, PLAYER1_
 public class GameRunner : MonoBehaviour
 {
     public GameState state;
-    public GameObject Player0;
-    public GameObject Player1;
+    [SerializeField]  GameObject GOPlayer0;
+    [SerializeField]  GameObject GOPlayer1;
+    [SerializeField] public static GameObject Player0;
+    [SerializeField] public static GameObject Player1;
     public GameObject EndTurnButton;
     public static GameRunner instance { get; private set; }
     // Start is called before the first frame update
@@ -24,6 +26,9 @@ public class GameRunner : MonoBehaviour
         {
             instance = this;
         }
+
+        Player0 = GOPlayer0;
+        Player1 = GOPlayer1;
     }
     void Start()
     {
@@ -37,9 +42,9 @@ public class GameRunner : MonoBehaviour
         //no setup for now.
         yield return new WaitForSeconds(1.5f);
         state = GameState.PLAYER0_TURN;
-        Player0.BroadcastMessage("GameStart");
-        Player0.GetComponent<TurnHandler>().OnTurnStart();
-        Player1.BroadcastMessage("GameStart");
+        GOPlayer0.BroadcastMessage("GameStart");
+        GOPlayer0.GetComponent<TurnHandler>().OnTurnStart();
+        GOPlayer1.BroadcastMessage("GameStart");
         PlayerTurns();
     }
 
@@ -55,16 +60,16 @@ public class GameRunner : MonoBehaviour
         {
             //player0's turn
             // Debug.Log("Player 0 turn");
-            Player1.BroadcastMessage("DeactiveHand", EndTurnButton);
-            Player0.BroadcastMessage("ActiveHand", EndTurnButton);
-            Player0.GetComponent<TurnHandler>().OnTurnStart();
+            GOPlayer1.BroadcastMessage("DeactiveHand", EndTurnButton);
+            GOPlayer0.BroadcastMessage("ActiveHand", EndTurnButton);
+            GOPlayer0.GetComponent<TurnHandler>().OnTurnStart();
         }
         else if(state == GameState.PLAYER1_TURN)
         {
             //player1's turn
-            Player0.BroadcastMessage("DeactiveHand", EndTurnButton);
-            Player1.BroadcastMessage("ActiveHand", EndTurnButton);
-            Player1.GetComponent<TurnHandler>().OnTurnStart();
+            GOPlayer0.BroadcastMessage("DeactiveHand", EndTurnButton);
+            GOPlayer1.BroadcastMessage("ActiveHand", EndTurnButton);
+            GOPlayer1.GetComponent<TurnHandler>().OnTurnStart();
            // Debug.Log("Player 1 turn");
         }
     }

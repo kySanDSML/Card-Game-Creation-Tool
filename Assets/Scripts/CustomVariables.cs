@@ -5,7 +5,17 @@ using UnityEngine;
 public enum Action
 {
     Damage,
-    Heal,
+    ReduceDamage,
+    IncreaseHealth,
+    IncreaseDamage,
+    RestoreHealth,
+    RestoreDamage,
+    FullHeal,
+    RestoreStats,
+    ResetHealth,
+    ResetDamage,
+    SetHealth,
+    SetDamage,
     None = -1
 }
 
@@ -36,8 +46,10 @@ public class ActionTargetPair
     public Action action;
     public int actionValue;
     public Target target;
-    public int targetCount;
+    public int repeatCount;
 }
+
+
 
 public enum SummonType
 {
